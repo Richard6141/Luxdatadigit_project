@@ -1,3 +1,4 @@
+const Validator = require("fastest-validator");
 const res = require("express/lib/response");
 const models = require("../models");
 function save(req, res) {
@@ -5,6 +6,22 @@ function save(req, res) {
     userId: 1,
     taskName: req.body.taskName,
   };
+
+  const schema = {
+    userId: { type: "number", optional: false },
+    taskName: { type: "string", optional: false, max: "255" },
+  };
+
+  const v = new Validator();
+  const validationResponse = v.validate(task, schema);
+
+  if (validationResponse !== true) {
+    return res.status(400).json({
+      message: "Validation failed !",
+      errors: validationResponse,
+    });
+  }
+
   models.Task.create(task)
     .then((result) => {
       res.status(201).json({
@@ -57,6 +74,20 @@ function update(req, res) {
     taskName: req.body.taskName,
   };
   const userId = 1;
+
+  const schema = {
+    taskName: { type: "string", optional: false, max: "255" },
+  };
+
+  const v = new Validator();
+  const validationResponse = v.validate(updatedTask, schema);
+
+  if (validationResponse !== true) {
+    return res.status(400).json({
+      message: "Validation failed !",
+      errors: validationResponse,
+    });
+  }
 
   models.Task.update(updatedTask, { where: { id: id, userId: userId } })
     .then((result) => {
