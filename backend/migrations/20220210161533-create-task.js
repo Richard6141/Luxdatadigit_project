@@ -13,7 +13,8 @@ module.exports = {
       },
       taskName: {
         type: Sequelize.STRING
-      },
+      }
+      ,
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
