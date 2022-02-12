@@ -1,22 +1,26 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Chronos', {
+    await queryInterface.createTable('Tasks', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      taskId: {
-        type: Sequelize.INTEGER
+      userId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key: "id",
+        },
       },
-      githubLink: {
-        type: Sequelize.STRING
-      },
-      time: {
-        type: Sequelize.TIME
-      },
+      taskName: {
+        type: Sequelize.STRING,
+        required:true,
+        allowNull:false,
+      }
+      ,
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -28,6 +32,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Chronos');
+    await queryInterface.dropTable('Tasks');
   }
 };

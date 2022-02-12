@@ -1,21 +1,20 @@
 const Validator = require("fastest-validator");
 const res = require("express/lib/response");
 const models = require("../models");
-const User = require('../models').User;
-const sequelize= require('sequelize');
-function save(req, res) {
-  const task = {
-    userId: 3,
-    taskName: req.body.taskName,
+// const User = require('../models').User;
+// const sequelize= require('sequelize');
+
+function createrole(req, res) {
+  const role = {
+    roleName: req.body.roleName,
   };
 
   const schema = {
-    userId: { type: "number", optional: false },
-    taskName: { type: "string", optional: false, max: "255" },
+    roleName: { type: "string", optional: false, max: "255" },
   };
 
   const v = new Validator();
-  const validationResponse = v.validate(task, schema);
+  const validationResponse = v.validate(role, schema);
 
   if (validationResponse !== true) {
     return res.status(400).json({
@@ -24,11 +23,11 @@ function save(req, res) {
     });
   }
 
-  models.Task.create(task)
+  models.Role.create(role)
     .then((result) => {
       res.status(201).json({
         message: "Task created successfully",
-        Task: result,
+        Role: result,
       });
     })
     .catch((error) => {
@@ -41,8 +40,9 @@ function save(req, res) {
 
 function show(req, res) {
   const id = req.params.id;
-  models.Task.findByPk(id)
+  models.Role.findByPk(id)
     .then((result) => {
+      //console.log(id)
       if (result) {
         res.status(200).json(result);
       } else {
@@ -59,9 +59,7 @@ function show(req, res) {
 }
 
 function index(req, res) {
-  models.Task.findAll({include:[{
-    model: models.User,
-  }]})
+  models.Role.findAll()
     .then((result) => {
       res.status(200).json(result);
     })
@@ -73,19 +71,18 @@ function index(req, res) {
     });
 }
 
+
 function update(req, res) {
   const id = req.params.id;
-  const updatedTask = {
-    taskName: req.body.taskName,
+  const updatedRole = {
+    roleName: req.body.roleName,
   };
-  const userId = 2;
-
   const schema = {
-    taskName: { type: "string", optional: false, max: "255" },
+    roleName: { type: "string", optional: false, max: "255" },
   };
 
   const v = new Validator();
-  const validationResponse = v.validate(updatedTask, schema);
+  const validationResponse = v.validate(updatedRole, schema);
 
   if (validationResponse !== true) {
     return res.status(400).json({
@@ -94,40 +91,42 @@ function update(req, res) {
     });
   }
 
-  models.Task.update(updatedTask, { where: { id: id, userId: userId } })
+  models.Role.update(updatedRole, { where: { id: id,} })
     .then((result) => {
       if (result) {
         res.status(200).json({
-          message: "Task updated successfully !",
-          Task: updatedTask,
+          message: "Role updated successfully !",
+          Role: updatedRole,
         });
       } else {
         res.status(404).json({
-          message: "Task with this id doesn't found",
+          message: "Role with this id doesn't found",
         });
       }
     })
     .catch((error) => {
       res.status(200).json({
         message: "Something went wrong !",
-        Task: error,
+        Role: error,
       });
     });
 }
 
+
+
 function destroy(req, res) {
   const id = req.params.id;
-  const userId = 2;
+  // const userId = 2;
 
-  models.Task.destroy({ where: { id: id, userId: userId } })
+  models.Role.destroy({ where: { id: id } })
     .then((result) => {
       if (result) {
         res.status(200).json({
-          message: "Task deleted successfully",
+          message: "Role deleted successfully",
         });
       } else {
         res.status(401).json({
-          message: "Task with this id doesn't found !",
+          message: "Role with this id doesn't found !",
         });
       }
     })
@@ -140,7 +139,7 @@ function destroy(req, res) {
 }
 
 module.exports = {
-  save: save,
+  createrole: createrole,
   show: show,
   index: index,
   update: update,

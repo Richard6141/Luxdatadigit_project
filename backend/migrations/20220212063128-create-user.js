@@ -9,19 +9,33 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        required:true,
+        allowNull:false,
       },
       surname: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        required:true,
+        allowNull:false,
+        allowNull:false,
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        required:true,
+        isEmail:true,
       },
       password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        required:true,
+        allowNull:false,
+        validate: {
+          is: /^[0-9a-f]{64}$/i
+        }
       },
       nationality: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        required:true,
+        allowNull:false,
       },
       birthday: {
         type: Sequelize.DATE

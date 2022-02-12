@@ -2,6 +2,9 @@ const models = require("../models");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Validator = require("fastest-validator");
+const User = require('../models').Task;
+
+
 function singUp(req, res) {
   models.User.findOne({ where: { email: req.body.email } })
     .then((result) => {
@@ -79,10 +82,11 @@ function logIn(req, res){
                     const token = jwt.sign({
                         email: user.email,
                         userId: user.id,
-                    }, 'secret', function(err, token){
+                    }, process.env.JWT_KEY, function(err, token){
                         res.status(200).json({
                             message: "Authentificate successful !",
-                            token:token
+                            token:token,
+                            decoc : jwt.decode(token) 
                         })
                     })
                 }else{
@@ -99,7 +103,45 @@ function logIn(req, res){
     })
 }
 
+function allusers(req, res) {
+  models.User.findAll({include:[{
+    model: models.Task,
+  }]})
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((error) => {
+      res.status(500).json({
+        message: "Something went wrong",
+        error: error
+      });
+    });
+}
+
+function show(req, res) {
+  const id = req.params.id;
+  models.User.findByPk(id)
+    .then((result) => {
+      if (result) {
+        res.status(200).json(result);
+      } else {
+        res.status(404).json({
+          message: "Task with this id doesn't found",
+        });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({
+        message: "Something went wrong",
+      });
+    });
+}
+
+
+
 module.exports = {
   singUp: singUp,
   logIn:logIn,
+  allusers:allusers,
+  show:show,
 };
