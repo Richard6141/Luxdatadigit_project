@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // Userrole.hasMany(models.Role)
+      // Userrole.hasMany(models.User)
     }
   }
   Userrole.init({

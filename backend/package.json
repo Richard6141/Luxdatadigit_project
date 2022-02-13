@@ -4,9 +4,8 @@
   "description": "Backend of App to manage developpers teamwork",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node server",
     "start": "nodemon server.js"
-
   },
   "author": "Somassè Richard SALANON",
   "license": "ISC",

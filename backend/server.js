@@ -1,9 +1,10 @@
+const res = require('express/lib/response');
 const http = require('http');
 const app = require('./app');
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
 const server = http.createServer(app);
 
-server.listen(port, ()=>{
-    console.log("application launching on the port 3000..")
-})
+server.listen(PORT, ()=>
+    console.log(`Server started on port ${PORT}..`)
+)

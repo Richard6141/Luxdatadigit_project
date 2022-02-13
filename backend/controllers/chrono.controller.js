@@ -6,7 +6,7 @@ const models = require("../models");
 
 function setTime(req, res) {
   const worktime = {
-    taskId: 3,
+    taskId: req.body.taskId,
     githubLink: req.body.githubLink,
     time: req.body.time,
   };

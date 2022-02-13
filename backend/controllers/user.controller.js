@@ -46,10 +46,20 @@ function singUp(req, res) {
 
             models.User.create(user)
               .then((result) => {
-                res.status(201).json({
-                  message: "User created successfully",
-                  User: result,
-                });
+                models.Role.findOne({ where: { roleName: "user" } }).then(
+                  (resul) => {
+                    let rolechek = models.Userrole.create({
+                      userId: result.id,
+                      roleId: resul.id,
+                    }).then((re) => {
+                      res.status(201).json({
+                        message: "User created successfully",
+                        User: result,
+                        Role: re,
+                      });
+                    });
+                  }
+                );
               })
               .catch((error) => {
                 res.status(500).json({
@@ -118,6 +128,7 @@ function allusers(req, res) {
       {
         model: models.Task,
       },
+      
     ],
   })
     .then((result) => {
@@ -133,7 +144,9 @@ function allusers(req, res) {
 
 function show(req, res) {
   const id = req.params.id;
-  models.User.findByPk(id)
+  models.User.findByPk(id, {include:[{
+    model:models.Userrole,
+  }]})
     .then((result) => {
       if (result) {
         res.status(200).json(result);
@@ -246,7 +259,7 @@ function userupdate(req, res) {
       //   }
       // });
 
-      models.User.update(usertoupdate, { where: { id: id, } })
+      models.User.update(usertoupdate, { where: { id: id } })
         .then((result) => {
           if (result) {
             res.status(200).json({
