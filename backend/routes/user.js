@@ -10,6 +10,5 @@ router.get('/', userController.allusers)
 router.get('/:id', AuthMiddleware.checkAuth, userController.show)
 router.delete('/:id', AuthMiddleware.checkAuth, userController.destroy)
 router.patch('/:id', AuthMiddleware.checkAuth, userController.userupdate)
-// router.get('/logout', userController.logout)
 
 module.exports = router

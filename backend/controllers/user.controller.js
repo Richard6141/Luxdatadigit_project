@@ -163,22 +163,9 @@ function show(req, res) {
     });
 }
 
-// function logout(req, res){
-//   const token = req.headers.authorization.split(" ")[1]
-//   const existtoken = jwt.existtoken(token)
-//   if (existtoken){
-//     jwt.destroy(token)
-//   }else{
-//     res.status(401).json({
-//       message: "User is not connected !"
-//     })
-//   }
-// }
-
 function destroy(req, res) {
   const id = req.params.id;
-  // const userId = req.user.userId;
-
+  
   models.User.destroy({ where: { id: id } })
     .then((result) => {
       if (result) {
@@ -238,27 +225,6 @@ function userupdate(req, res) {
         });
       }
 
-      // usertoupdate.forEach((tag) => {
-      //   if (is_exist) {
-      //     tag.name === usertoupdate.name ? usertoupdate.name : tag.name;
-      //     tag.surname === usertoupdate.surname
-      //       ? usertoupdate.surname
-      //       : tag.surname;
-      //     tag.password === usertoupdate.password
-      //       ? usertoupdate.password
-      //       : tag.password;
-      //     tag.nationality === usertoupdate.nationality
-      //       ? usertoupdate.nationality
-      //       : tag.nationality;
-      //     tag.birthday === usertoupdate.birthday
-      //       ? usertoupdate.birthday
-      //       : tag.birthday;
-      //     tag.speciality === usertoupdate.speciality
-      //       ? usertoupdate.speciality
-      //       : tag.speciality;
-      //   }
-      // });
-
       models.User.update(usertoupdate, { where: { id: id } })
         .then((result) => {
           if (result) {
@@ -287,7 +253,6 @@ module.exports = {
   logIn: logIn,
   allusers: allusers,
   show: show,
-  // logout:logout,
   destroy: destroy,
   userupdate: userupdate,
 };

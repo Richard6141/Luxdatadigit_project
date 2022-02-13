@@ -1,8 +1,6 @@
 const Validator = require("fastest-validator");
 const res = require("express/lib/response");
 const models = require("../models");
-// const User = require('../models').User;
-// const sequelize= require('sequelize');
 
 function createrole(req, res) {
   const role = {
