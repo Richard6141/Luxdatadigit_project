@@ -4,8 +4,9 @@ const models = require("../models");
 const User = require('../models').User;
 const sequelize= require('sequelize');
 function save(req, res) {
+  const { userId } = req.user;
   const task = {
-    userId: 3,
+    userId: userId,
     taskName: req.body.taskName,
   };
 
@@ -78,7 +79,7 @@ function update(req, res) {
   const updatedTask = {
     taskName: req.body.taskName,
   };
-  const userId = 2;
+  userId = req.user.userId;
 
   const schema = {
     taskName: { type: "string", optional: false, max: "255" },
@@ -117,7 +118,7 @@ function update(req, res) {
 
 function destroy(req, res) {
   const id = req.params.id;
-  const userId = 2;
+  const userId = req.user.userId;
 
   models.Task.destroy({ where: { id: id, userId: userId } })
     .then((result) => {

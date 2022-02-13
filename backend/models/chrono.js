@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   Chrono.init({
     taskId: DataTypes.INTEGER,
     githubLink: DataTypes.STRING,
-    hours: DataTypes.TIME
+    time: DataTypes.TIME
   }, {
     sequelize,
     modelName: 'Chrono',
