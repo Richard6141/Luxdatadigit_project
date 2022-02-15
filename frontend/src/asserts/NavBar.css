@@ -1,0 +1,8 @@
+#nvb {
+  position: fixed;
+  width: 100%;
+}
+.cont {
+  color: #fff;
+  z-index: 10;
+}
