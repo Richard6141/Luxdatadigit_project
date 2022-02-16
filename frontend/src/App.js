@@ -1,17 +1,24 @@
-// import logo from './logo.svg';
-// import './App.css';
 import React from "react";
-// import "./App.css";
-// import SignUpForm from "./components/SignUpForm";
-import Userlist from "./components/Userlist";
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import SignUpForm from "./pages/SignUpForm"
+import SignInForm from "./pages/SignInForm"
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <div>
-      {/* <SignUpForm /> */}
-      <Userlist />
-    
+    <Home />
     </div>
+    // <BrowserRouter>
+    //   <Routes>
+    //     <Route path="/" exact component={Home} />
+    //     <Route path="/signup" exact component={SignUpForm} />
+    //     <Route path="/footer" exact component={<Footer  />} />
+    //     <Route path="/signin" exact component={SignInForm} />
+    //   </Routes>
+    // </BrowserRouter>
   );
 }
 
