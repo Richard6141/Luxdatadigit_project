@@ -1,7 +1,6 @@
 import React from "react";
 import "../asserts/NavBar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {NavLink} from "react-router-dom";
 import {
   Container,
   Nav,
@@ -9,13 +8,12 @@ import {
   Navbar,
   Button,
   Form,
-  FormControl,
 } from "react-bootstrap";
 function NavBar() {
   return (
-    <Navbar bg="dark" variant="dark" text="light">
+    <Navbar bg="dark" variant="dark" text="light" id="nvb">
       <Container fluid className="cont">
-        <Navbar.Brand href="#">DevWorkTime</Navbar.Brand>
+        <Navbar.Brand href="">DevWorkTime</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -23,16 +21,18 @@ function NavBar() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">News</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/alluser">News</Nav.Link>
           </Nav>
           <Form className="d-flex">
-            <NavLink exact to="/signup">
-            <Button variant="outline-info" className="me-3">
-              Sign up
-            </Button>
-            </NavLink>
-            <Button variant="outline-primary">Sign in</Button>
+            <Nav.Link href="/signup">
+              <Button variant="outline-info" className="me-3">
+                Sign up
+              </Button>
+            </Nav.Link>
+            <Nav.Link href="/signin">
+              <Button variant="outline-primary">Sign in</Button>
+            </Nav.Link>
             <NavDropdown title="Username" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Profile</NavDropdown.Item>
               <NavDropdown.Item href="#action4">Today Tasks</NavDropdown.Item>

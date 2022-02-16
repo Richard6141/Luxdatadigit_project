@@ -1,4 +1,12 @@
-.signup{
-    background-color: #d6d6d6 !important;
-    height: 100% !important;
+.signup {
+  background-color: rgb(56, 48, 48);
+  height: 100%;
+  margin: 7em 15em 2em 15em;
+  padding: 2em 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  box-shadow: 1px 1px 15px 1px rgb(59, 57, 57);
+  border-radius: 5px;
+  color: white;
 }

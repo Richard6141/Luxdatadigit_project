@@ -1,24 +1,27 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
-import SignUpForm from "./pages/SignUpForm"
-import SignInForm from "./pages/SignInForm"
-import Footer from "./components/Footer";
+import SignUpForm from "./pages/SignUpForm";
+import SignInForm from "./pages/SignInForm";
+import AllTaskForUser from "./pages/AllTaskForUser";
+import NavBar from "./components/NavBar";
+import Userlist from "./components/Userlist";
 
 function App() {
   return (
-    <div>
-    <Home />
+    <div className="App">
+      <Router>
+      <NavBar />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/signup" component={SignUpForm} />
+          <Route path="/signin" component={SignInForm} />
+          <Route path="/alltask" component={AllTaskForUser} />
+          <Route path="/alluser" component={Userlist} />
+        </Switch>
+      </Router>
     </div>
-    // <BrowserRouter>
-    //   <Routes>
-    //     <Route path="/" exact component={Home} />
-    //     <Route path="/signup" exact component={SignUpForm} />
-    //     <Route path="/footer" exact component={<Footer  />} />
-    //     <Route path="/signin" exact component={SignInForm} />
-    //   </Routes>
-    // </BrowserRouter>
   );
 }
 
