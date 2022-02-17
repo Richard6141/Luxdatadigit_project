@@ -1,14 +1,20 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 
-const tasksRoute = require('./routes/tasks');
-const userRoute = require('./routes/user')
-const roleRoute = require('./routes/role')
-const chronoRoute = require('./routes/chrono')
-const userroleRoute = require('./routes/userrole')
+const tasksRoute = require("./routes/tasks");
+const userRoute = require("./routes/user");
+const roleRoute = require("./routes/role");
+const chronoRoute = require("./routes/chrono");
+const userroleRoute = require("./routes/userrole");
 
 app.use(bodyParser.json());
+const cors = require("cors");
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 app.use("/tasks", tasksRoute);
 app.use("/user", userRoute);

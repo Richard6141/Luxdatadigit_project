@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Table, Button } from "react-bootstrap";
+import "../asserts/signup.css";
+
 import axios from "axios";
 
 function Userlist() {
@@ -27,7 +29,7 @@ function Userlist() {
   }
 
   return (
-    <div>
+    <div className="userlist">
       <Table striped bordered hover>
         <thead>
           <tr>

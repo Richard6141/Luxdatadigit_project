@@ -166,7 +166,7 @@ function show(req, res) {
 function destroy(req, res) {
   const id = req.params.id;
   
-  models.User.destroy({ where: { id: id } })
+  models.User.destroy({ where: { id: id }})
     .then((result) => {
       if (result) {
         res.status(200).json({

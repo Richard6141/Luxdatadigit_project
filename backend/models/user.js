@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
       // define association here
-      User.hasMany(models.Task);
-      User.hasMany(models.Userrole)
+      User.hasMany(models.Task, {onDelete: 'cascade'});
+      User.hasMany(models.Userrole , {onDelete: 'cascade'})
     }
   }
   User.init({

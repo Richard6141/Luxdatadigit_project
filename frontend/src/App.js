@@ -19,6 +19,7 @@ function App() {
           <Route path="/signin" component={SignInForm} />
           <Route path="/alltask" component={AllTaskForUser} />
           <Route path="/alluser" component={Userlist} />
+          <Route path="/alltask" component={AllTaskForUser} />
         </Switch>
       </Router>
     </div>

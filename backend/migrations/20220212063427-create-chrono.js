@@ -13,6 +13,8 @@ module.exports = {
         references: {
           model: 'Tasks',
           key: "id",
+          onDelete : 'CASCADE',
+          onUpdate : 'CASCADE'
         },
       },
       githubLink: {

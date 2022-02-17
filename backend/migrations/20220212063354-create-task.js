@@ -13,14 +13,20 @@ module.exports = {
         references: {
           model: 'Users',
           key: "id",
+          onDelete : 'CASCADE',
+          onUpdate : 'CASCADE'
         },
       },
       taskName: {
         type: Sequelize.STRING,
         required:true,
         allowNull:false,
-      }
-      ,
+      },
+      description: {
+        type: Sequelize.STRING,
+        required:true,
+        allowNull:false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

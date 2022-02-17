@@ -1,6 +1,10 @@
 import React from "react";
 import "../asserts/Body.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import {
+  Nav,
+
+} from "react-bootstrap";
 
 function Body() {
   return (
@@ -10,9 +14,10 @@ function Body() {
           <h1>Welcome to DEV WORK TIME</h1>
         </div>
         <div id="cta">
-          <button className="btn btn-light">SIGN UP</button>
+        <Nav.Link className="btn btn-light"href="/signup">SIGN UP</Nav.Link>
           <h3>OR</h3>
-          <button className="btn btn-light">SIGN IN</button>
+        <Nav.Link className="btn btn-light"href="/signin">SIGN IN</Nav.Link>
+
         </div>
       </div>
       <div id="imgdiv">

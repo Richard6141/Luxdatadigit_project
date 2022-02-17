@@ -4,15 +4,16 @@ const models = require("../models");
 const User = require('../models').User;
 const sequelize= require('sequelize');
 function save(req, res) {
-  const { userId } = req.user;
   const task = {
-    userId: userId,
+    userId: req.body.userId,
     taskName: req.body.taskName,
+    description: req.body.description,
   };
 
   const schema = {
     userId: { type: "number", optional: false },
     taskName: { type: "string", optional: false, max: "255" },
+    description: { type: "string", optional: false, max: "255" },
   };
 
   const v = new Validator();
@@ -123,7 +124,7 @@ function destroy(req, res) {
   const id = req.params.id;
   const userId = req.user.userId;
 
-  models.Task.destroy({ where: { id: id, userId: userId } })
+  models.Task.destroy({ where: { id: id} })
     .then((result) => {
       if (result) {
         res.status(200).json({

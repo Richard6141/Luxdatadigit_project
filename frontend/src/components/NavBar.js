@@ -10,6 +10,19 @@ import {
   Form,
 } from "react-bootstrap";
 function NavBar() {
+  const logout = (e) => {
+    e.preventDefault()
+
+    const token = localStorage.getItem("Token");
+    if(token != undefined ){
+      localStorage.removeItem("Token")
+      localStorage.removeItem("userId")
+      window.location.replace("/")
+    }else{
+      window.location.replace("/")
+    }
+  };
+
   return (
     <Navbar bg="dark" variant="dark" text="light" id="nvb">
       <Container fluid className="cont">
@@ -22,7 +35,8 @@ function NavBar() {
             navbarScroll
           >
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/alluser">News</Nav.Link>
+            <Nav.Link href="/alltask">Tasks</Nav.Link>
+            <Nav.Link href="/alluser">Users</Nav.Link>
           </Nav>
           <Form className="d-flex">
             <Nav.Link href="/signup">
@@ -37,8 +51,8 @@ function NavBar() {
               <NavDropdown.Item href="#action3">Profile</NavDropdown.Item>
               <NavDropdown.Item href="#action4">Today Tasks</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Previews Tasks
+              <NavDropdown.Item href="#action5" onClick={(e)=>logout(e)}>
+                Logout
               </NavDropdown.Item>
             </NavDropdown>
           </Form>
